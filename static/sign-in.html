@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <link rel= "stylesheet" href = "./css/style.css" >  
+        <title>JSP Page</title>
+        <script src="js/external/vue.global.js"></script>
+        <script src="js/external/vuex.global.js"></script>
+        <script src="js/external/vuex-persistedstate.js"></script>
+        <script src="js/external/axios.js"></script>
+    </head>
+    <body>
+
+        <main>
+            <navmenu></navmenu>
+
+            <header>
+                <h1>Sign in</h1>
+            </header>   
+
+            <div>
+                <h3>Account Details</h3>
+                <form id="create-account-form" @submit.prevent="signIn()">
+                    <label for="username-input">Username:</label><input name = "username-input" id="username-input" type="text" required>
+                    <label for="password-input">Password:</label><input name = "password-input" id="password-input" type="text" required>
+                    <button>Sign In!</button>
+                </form>
+
+                <div>
+                    <p>
+                        If you don't have an account you can <a href="create-account.jsp">create one!</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <script type="module" src="js/sign-in.js"></script>
+    </body>
+</html>

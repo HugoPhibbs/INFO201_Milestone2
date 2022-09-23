@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Viewing a Product</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main>
+            <navmenu></navmenu>
+            
+            <header>
+                <h1>
+                    Viewing a Product
+                </h1>
+            </header>
+            
+            <table>
+                <tr>
+                    <td>ID: {{product.productId}}</td>
+                </tr>
+                <tr>
+                    <td>Name: {{product.name}}</td>
+                </tr>
+                
+                <tr>
+                    <td>Description {{product.description}}</td>
+                </tr>
+                
+                <tr>
+                    <td>Quantity Available: {{product.quantityInStock }}</td>
+                </tr>
+            </table>
+            
+            <div>
+                <h3>How many would you like to buy?</h3>
+                
+                <form @submit.prevent="addToCart()">
+                    <label for="quantityToBuy"> Quantity: </label>
+                    <input id="quantityToBuy" type = "number" v-model="quantityToBuy">
+                    <button type="submit">Add to cart</button>
+                </form>
+            </div>
+        </main>
+       
+        <script type="module" src="js/product.js"></script>
+    </body>
+</html>

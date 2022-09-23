@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <link href = "./css/style.css" rel="stylesheet">
+        <title>Create Account</title>
+
+        <script src="js/external/vue.global.js"></script>
+        <script src="js/external/vuex.global.js"></script>
+        <script src="js/external/vuex-persistedstate.js"></script>
+        <script src="js/external/axios.js"></script>
+    </head>
+    <body>
+
+        <main>
+            <navmenu></navmenu>
+
+            <header>
+                <h1>Create an Account</h1>
+            </header>
+
+            <form id = "create-account-form" action ="create-account" method = "POST">
+                <h3>Account Details</h3>
+                <div>
+                    <label for="username-input">Username:</label>
+                    <input name = "username" id="username-input" type="text" required = "required">
+                </div>
+
+                <div>
+                    <label for="firstname-input">First name:</label>
+                    <input name="firstName" id="firstname-input" type="text">
+                </div>
+
+                <div>
+                    <label for="lastname-input">Last name:</label>
+                    <input name="lastName" id="lastname-input" type="text">
+                </div>
+
+                <div>
+                    <label for="email-input">Email:</label>
+                    <input name="email" id="email-input" type="text">
+                </div>
+
+                <div>
+                    <label for="address-input">Address:</label>
+                    <input name = "address" id="address-input" type="text">
+                </div>
+
+                <div>
+                    <label for="password-input">Password:</label>
+                    <input name = "password" id="password-input" type="text" required = "required">
+                </div>
+
+                <button type = "submit" >Create account!</button>
+            </form>
+
+            <p class = "validation"></p>
+        </main>
+
+
+        <script type="module" src="js/create-account.js"></script>
+    </body>
+</html>

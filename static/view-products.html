@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <link rel= "stylesheet" href = "./css/style.css" >  
+        <title>View Products</title>
+        <script src="js/external/vue.global.js"></script>
+        <script src="js/external/vuex.global.js"></script>
+        <script src="js/external/vuex-persistedstate.js"></script>
+        <script src="js/external/axios.js"></script>
+    </head>
+    <body>
+        <main>
+            <navmenu></navmenu>
+            <header><h1>Products</h1></header>
+            <div>
+                <h3>Products</h3>
+
+                <a href = "view-products.html?cat=All"><button>All</button></a>
+
+                <a href = "view-products.html?cat=TODO>"><button>></button></a>
+
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Stock
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr v-for="product in products">
+                            <td>{{product.name}}</td>
+                            <td>{{product.category}}</td>
+                            <td>{{product.listPrice}}</td>
+                            <td>{{product.quantityInStock}}</td>
+                            <td><form @submit.prevent="view(product)"><button>View</button></form></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <script type="module" src="js/view-products.js"></script>
+    </body>
+</html>

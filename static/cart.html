@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shopping Cart</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main>
+            
+            
+            <header>
+                <h1>
+                    Shopping Cart
+                </h1>
+            </header>
+           
+            <navmenu></navmenu>
+            
+            <table>
+                <tr>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Total</td>
+                </tr>
+                
+                <tr v-for="product in shoppingCart">
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.name}}</td> // TODO
+                </tr>
+                
+                <form submit.prevent="checkOut()">
+                    <button type = "submit"> Check out cart</button>
+                </form>
+            </table>
+        </main>
+        
+    </body>
+</html>
