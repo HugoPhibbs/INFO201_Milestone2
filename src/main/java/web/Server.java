@@ -1,21 +1,27 @@
 package web;
 
+import dao.CustomerDAO;
 import dao.DaoFactory;
 import dao.ProductDAO;
+import dao.SaleDAO;
 import io.jooby.Jooby;
 import io.jooby.ServerOptions;
 import io.jooby.json.GsonModule;
 
 public class Server extends Jooby {
     
-        ProductDAO dao = DaoFactory.getProductDAO();
+        ProductDAO productDao = DaoFactory.getProductDAO();
+        CustomerDAO customerDao = DaoFactory.getCustomerDAO();
+        SaleDAO saleDao = DaoFactory.getSaleDAO();
 
 	public Server() {
-		setServerOptions(new ServerOptions().setPort(8085));
+		setServerOptions(new ServerOptions().setPort(8085));    
 
 		install(new GsonModule());
 
-                mount(new ProductModule(dao));
+                mount(new SaleModule(saleDao));
+                mount(new CustomerModule(customerDao));
+                mount(new ProductModule(productDao));
 		mount(new StaticAssetModule());
                
 	}
