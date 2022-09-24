@@ -33,4 +33,8 @@ public class DaoFactory {
         return JdbiDaoFactory.getCustomerDAO();
         // return new CustomerCollectionsDAO();
     }
+    
+     public static SaleDAO getSaleDAO() {
+        return JdbiDaoFactory.getSaleDAO();
+    }
 }
