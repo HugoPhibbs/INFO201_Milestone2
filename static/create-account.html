@@ -19,39 +19,39 @@
                 <h1>Create an Account</h1>
             </header>
 
-            <form id = "create-account-form" action ="create-account" method = "POST">
+            <form id = "create-account-form" @submit.prevent="createAccount()">
                 <h3>Account Details</h3>
                 <div>
                     <label for="username-input">Username:</label>
-                    <input name = "username" id="username-input" type="text" required = "required">
+                    <input v-model = "customer.username" id="username-input" required>
                 </div>
 
                 <div>
                     <label for="firstname-input">First name:</label>
-                    <input name="firstName" id="firstname-input" type="text">
+                    <input v-model = "customer.firstName" id = "firstname-input">
                 </div>
 
                 <div>
                     <label for="lastname-input">Last name:</label>
-                    <input name="lastName" id="lastname-input" type="text">
+                    <input v-model="customer.lastName" id="lastname-input">
                 </div>
 
                 <div>
                     <label for="email-input">Email:</label>
-                    <input name="email" id="email-input" type="text">
+                    <input v-model="customer.email" id="email-input">
                 </div>
 
                 <div>
                     <label for="address-input">Address:</label>
-                    <input name = "address" id="address-input" type="text">
+                    <input v-model = "customer.addresss" id="address-input">
                 </div>
 
                 <div>
                     <label for="password-input">Password:</label>
-                    <input name = "password" id="password-input" type="text" required = "required">
+                    <input v-model = "customer.password" id="password-input" required>
                 </div>
 
-                <button type = "submit" >Create account!</button>
+                <button type = submit>Create account!</button>
             </form>
 
             <p class = "validation"></p>
