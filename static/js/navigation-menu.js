@@ -1,24 +1,34 @@
+"use strict";
+
 export const navigationMenu = {
+    
+    computed : {
+        signedIn() {
+            return this.customer != null;
+        },
+        
+        ...Vuex.mapState({
+            customer: 'customer'
+        })
+    },
+    
     template:
         `
-
-        <div class="nav-div"> 
-
-            <div class = "nav-links-div">
-                <a href="index.html"><button>Home </button></a>
- 
-                <a href = "view-products.html"><button>View Products</button></a>
-                <form id = "sign-out-form" action = "sign-out" method = "GET">
-                    <button type = "submit">Sign out</button>
-                </form>
-            </div>
-                
-            <!-- 
-              <% if (customer != null) { %>
-            <h2>Hi <%= customer.getUsername() %></h2>
-            <% }%> 
-            -->
-            
-        </div>
+        <nav>
+            <div v-if="signedIn">Welcome {{customer.firstName}}</div>
+            <a href=".">Home</a>
+            <a href="view-products.html" v-if="signedIn">Browse Products</a>
+            <a href="cart.html" v-if="signedIn">View Cart</a>
+            <a href="#" v-if="signedIn" @click="signOut()">Sign Out</a>
+            <a href="sign-in.html" v-if="!signedIn">Sign In</a>
+        </nav>
         `
+    ,
+    
+    methods:{
+        signOut() {
+            sessionStorage.clear();
+            window.location = '.';
+        }
+    }
 };

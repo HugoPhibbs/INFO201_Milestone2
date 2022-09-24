@@ -1,26 +1,30 @@
+let customerExistsApi = ({username}) => `/api/customer/${username}`;
+
 const app = Vue.createApp({
 
     data() {
         return {
             // models map (comma separated key/value pairs)
-
+            customer: new Object()
         };
     },
 
-    computed: Vuex.mapState({
-        customer: 'currentCustomer'
-    }),
-
     mounted() {
         // semicolon separated statements
-
-        alert('Mounted method called');
-
     },
 
     methods: {
         // comma separated function declarations
-
+        signIn() {
+            axios.get(customerExistsApi({'username': this.customer.username}))
+                    .then(res => {
+                        sessionStore.commit("signIn", this.customer);
+                        window.location = 'index.html';
+                    }).catch(error => {
+                        console.log(error);
+                        alert("An error occurred - check the console for details.");
+                    });
+        }
     },
 
     // other modules
@@ -29,6 +33,11 @@ const app = Vue.createApp({
 });
 
 // other component imports go here
+
+// import data store
+import { sessionStore } from './session-store.js'
+        app.use(sessionStore);
+
 
 // import the navigation menu
 import { navigationMenu } from './navigation-menu.js';

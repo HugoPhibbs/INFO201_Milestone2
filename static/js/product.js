@@ -1,33 +1,41 @@
+import {SaleItem} from './classes.js'
+import { NumberFormatter } from './number-formatter.js';
+
 const app = Vue.createApp({
 
     data() {
         return {
             // models map (comma separated key/value pairs)
             // TODO Add selected Product
+            quantityToBuy: new Object()
         };
     },
     
     computed: Vuex.mapState({
-        quantityToBuy: "quantityToBuy"
+        product: 'selectedProduct'
     }),
 
     mounted() {
-        // semicolon separated statements
-
-        alert('Mounted method called');
-
     },
 
     methods: {
         // comma separated function declarations
+        
+        addToCart() {
+           sessionStore.commit("addItem", new SaleItem(this.product, this.quantityToBuy));
+        }
     },
 
     // other modules
-    mixins: []
+    mixins:[NumberFormatter]
 
 });
 
 // other component imports go here
+
+// Importing data store
+import {sessionStore} from './session-store.js'
+app.use(sessionStore);
 
 // import the navigation menu
 import { navigationMenu } from './navigation-menu.js';

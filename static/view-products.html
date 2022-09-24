@@ -16,9 +16,9 @@
             <div>
                 <h3>Products</h3>
 
-                <a href = "view-products.html?cat=All"><button>All</button></a>
+                <button @click.prevent = "getProducts()">All</button>
 
-                <a href = "view-products.html?cat=TODO>"><button>></button></a>
+                <button v-for="category in categories" @click.prevent ="filterProducts(category)">{{category}}</button>
 
 
                 <table>

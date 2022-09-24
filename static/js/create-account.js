@@ -1,22 +1,29 @@
+let searchCustomerApi = '/api/customer/{}';
+let registerApi = '/api/register/';
+
 const app = Vue.createApp({
 
     data() {
         return {
-            // models map (comma separated key/value pairs)
-
+            customer: new Object()
         };
     },
 
     mounted() {
         // semicolon separated statements
-
-        alert('Mounted method called');
-
     },
 
     methods: {
         // comma separated function declarations
-
+        createAccount() {
+            axios.post(registerApi, this.customer)
+                    .then(() => {
+                        window.location = "index.html";
+                    })
+                    .catch(error => {
+                        alert(error.response.data.message);
+                    });
+        }
     },
 
     // other modules
@@ -25,6 +32,10 @@ const app = Vue.createApp({
 });
 
 // other component imports go here
+
+// import data store
+import { sessionStore } from './session-store.js'
+        app.use(sessionStore);
 
 // import the navigation menu
 import { navigationMenu } from './navigation-menu.js';
