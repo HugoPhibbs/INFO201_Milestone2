@@ -1,0 +1,44 @@
+@startuml
+    title Filtering products by a category
+    skinparam style strictuml
+
+    actor Customer as cust
+    participant "view-products.html" as vp_html <<HTML Page>>
+    participant "view-products.js" as vp_js <<Vue Controller>>
+    participant "ProductModule" as PM <<Jooby Module>>
+    participant "ProductJdbiDAO" as dao <<DAO>>
+    database Database as db
+
+
+    cust -> vp_html: Click category to view
+    activate vp_html
+
+    vp_html -> vp_js: filterProducts(category)
+    activate vp_js
+
+    vp_js -> PM: GET api/categories/category
+    activate PM
+
+    PM -> dao: flterByCategory(category)
+    activate dao
+    
+    dao -> db: SELECT * FROM PRODUCT WHERE CATEGORY = :category
+    activate db
+    
+    db --> dao: result
+    deactivate db
+
+    dao --> PM: filtered products
+    deactivate dao
+
+    PM --> vp_js: products 
+    deactivate PM
+
+    vp_js -> vp_js: Update products stored
+
+    vp_js --> vp_html: Update products shown
+    deactivate vp_js
+
+    vp_html -> vp_html: Display products
+
+@enduml
