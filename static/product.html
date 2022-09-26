@@ -1,54 +1,69 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Viewing a Product</title>
-        <meta charset="windows-1252">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <script src="js/external/vue.global.js"></script>
-        <script src="js/external/vuex.global.js"></script>
-        <script src="js/external/vuex-persistedstate.js"></script>
-        <script src="js/external/axios.js"></script>
-    </head>
-    <body>
-        <main>
-            
-            <header>
-                <h1>
-                    Viewing a Product
-                </h1>
-            </header>
-            
-            <navmenu></navmenu>
-            
-            <table>
-                <tr>
-                    <td>ID: {{product.productId}}</td>
-                </tr>
-                <tr>
-                    <td>Name: {{product.name}}</td>
-                </tr>
-                
-                <tr>
-                    <td>Description {{product.description}}</td>
-                </tr>
-                
-                <tr>
-                    <td>Quantity Available: {{product.quantityInStock }}</td>
-                </tr>
-            </table>
-            
-            <div>
-                <h3>How many would you like to buy?</h3>
-                
-                <form @submit.prevent="addToCart()">
-                    <label for="quantityToBuy"> Quantity: </label>
-                    <input id="quantityToBuy" type = "number" v-model="quantityToBuy">
-                    <button type="submit">Add to cart</button>
-                </form>
-            </div>
-        </main>
-       
-        <script type="module" src="js/product.js"></script>
-    </body>
+<head>
+	<title> Viewing a Product</title>
+	<meta charset="windows-1252">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<script src="js/external/vue.global.js"></script>
+	<script src="js/external/vuex.global.js"></script>
+	<script src="js/external/vuex-persistedstate.js"></script>
+	<script src="js/external/axios.js"></script>
+
+	<link href="./css/style.css" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com" rel="preconnect">
+	<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<main>
+
+	<header>
+		<h1>
+			The Ski Master Store
+		</h1>
+		<navmenu></navmenu>
+	</header>
+
+	<div class ="content-div">
+
+		<h2>
+			{{product.name}}
+		</h2>
+
+		<div id = "product-details-div">
+
+			<p>
+				Price: {{formatCurrency(product.listPrice)}}
+			</p>
+
+			<p>
+				Description: {{product.description}}
+			</p>
+
+			<p>
+				Quantity Available: {{quantityAvailable}}
+			</p>
+
+			<p>
+				ID: {{product.productId}}
+			</p>
+		</div>
+
+		<div id = "add-to-cart-div">
+			<h4>How many would you like to buy?</h4>
+
+			<form id = "add-to-cart-form" @submit.prevent="addToCart()">
+				<fieldset id="quantity-fieldset">
+					<label for="quantityToBuy"> Quantity: </label>
+					<input required ref = "quantityToBuy" id="quantityToBuy" type="number" v-model="quantityToBuy" min="1" :max="quantityAvailable">
+				</fieldset>
+				<button class= "submit-button advance-button" type="submit">Add to cart</button>
+			</form>
+		</div>
+	</div>
+</main>
+<script src="js/product.js" type="module"></script>
+</body>
 </html>

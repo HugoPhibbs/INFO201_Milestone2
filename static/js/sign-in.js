@@ -17,13 +17,13 @@ const app = Vue.createApp({
         // comma separated function declarations
         signIn() {
             axios.get(customerExistsApi({'username': this.customer.username}))
-                    .then(res => {
-                        sessionStore.commit("signIn", this.customer);
-                        window.location = 'index.html';
-                    }).catch(error => {
-                        console.log(error);
-                        alert("An error occurred - check the console for details.");
-                    });
+                .then(res => {
+                    sessionStore.commit("signIn", res.data);
+                    window.location = 'index.html';
+                }).catch(error => {
+                console.log(error);
+                alert("An error occurred - check the console for details.");
+            });
         }
     },
 

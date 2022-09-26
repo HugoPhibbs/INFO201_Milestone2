@@ -4,50 +4,64 @@
         <title>Shopping Cart</title>
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel= "stylesheet" href = "./css/style.css" >
         <script src="js/external/vue.global.js"></script>
         <script src="js/external/vuex.global.js"></script>
         <script src="js/external/vuex-persistedstate.js"></script>
         <script src="js/external/axios.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     </head>
     <body>
         <main>
 
-
             <header>
                 <h1>
-                    Shopping Cart
+                    The Ski Master Store
                 </h1>
+                <navmenu></navmenu>
             </header>
 
-            <navmenu></navmenu>
+            <div class="content-div">
+                <h2>
+                    Your Cart
+                </h2>
+                <table>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
 
-            <table>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
+                    <tr v-for="item in items">
+                        <td>{{item.product.name}}</td>
+                        <td>{{formatCurrency(item.salePrice)}}</td>
+                        <td>{{formatNumber(item.quantityPurchased, 2)}}</td>
+                        <td>{{formatCurrency(getItemTotal(item))}}</td>
+                    </tr>
 
-                <tr v-for="item in items">
-                    <td>{{item.product.name}}</td>
-                    <td>{{formatCurrency(item.salePrice)}}</td>
-                    <td>{{formatNumber(item.quantityPurchased, 2)}}</td>
-                    <td>{{formatCurrency(getItemTotal(item))}}</td>
-                </tr>
+                    <tr>
+                        <td id = "grand-total">Grand Total</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{formatCurrency(getGrandTotal())}}</td>
+                    </tr>
 
-                <tr>
-                    <td id = "grand-total">Grand Total</td>
-                    <td></td>
-                    <td></td>
-                    <td>{{formatCurrency(getGrandTotal())}}</td>
-                </tr>
+                </table>
 
-            </table>
+                <div id ="cart-buttons-div">
+                    <form @submit.prevent="clearCart()">
+                        <button class = "submit-button" id="clear-cart-button" type="submit"> Clear  cart</button>
+                    </form>
+                    <form @submit.prevent="checkOut()">
+                        <button class = "submit-button advance-button" type="submit"> Check out cart</button>
+                    </form>
+                </div>
+            </div>
 
-            <form @submit.prevent="checkOut()">
-                <button type = "submit"> Check out cart</button>
-            </form>
         </main>
 
         <script type="module" src="js/cart.js"></script>

@@ -1,3 +1,5 @@
+import {NumberFormatter} from "./number-formatter.js";
+
 let productsApi = '/api/products';
 let categoriesApi = '/api/categories';
 let filterByCategoryApi = ({category}) => `/api/categories/${category}`;
@@ -55,7 +57,7 @@ const app = Vue.createApp({
     },
 
     // other modules
-    mixins: []
+    mixins: [NumberFormatter]
 
 });
 

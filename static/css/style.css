@@ -1,40 +1,143 @@
-* {
-    font-family: Calibri;
+:root {
+    --light-blue: #9AC5F5;
+    --dark-blue: #2C66A8;
+    --orange: #F58F58;
+    --light-orange: #f8b08a;
+    --light-gray: #f0f0f0;
+    --dark-gray: #a7a8a8;
+    --lightest-gray: #f7f7f7;
 }
 
-#create-account-form {
+* {
+    font-family: 'Open Sans', sans-serif;;
+}
+
+.enter-details-form  {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    gap: 1em;
+    gap:0.5em;
 }
 
-.nav-links-div {
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 1em;
-    justify-content: center;
-}
-
-.nav-div {
+main {
     display: flex;
     flex-flow: column nowrap;
-    gap: 0.5em;
+    align-items: stretch;
+    justify-content: start;
 }
 
 body {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: start;
-    gap: 1em;
+    margin: 0;
 }
 
-
 header {
-    background-color: lightgray;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: var(--light-gray);
     text-align: center;
     width: 100%;
+    gap: 0.5em;
+    justify-content: space-around;
+}
+
+nav {
+    background-color: var(--lightest-gray);
+    height: 2.5em;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.nav-div:first-child {
+    border-left: none;
+}
+
+.nav-div:last-child {
+    border-right: none;
+}
+
+.nav-div {
+    padding: 1em;
+    display:flex;
+    flex-flow: column;
+    justify-content: center;
+    border-left: 2px solid var(--dark-gray);
+    border-right: 2px solid var(--dark-gray);
+    margin:-2px 0 0 -2px; /*https://stackoverflow.com/questions/17915865/how-to-make-borders-collapse-on-a-div*/
+}
+
+.nav-div:hover {
+    background-color: var(--light-blue);
+    text-decoration: underline;
+}
+
+.nav-link {
+    text-decoration: none;
+    color:black;
+}
+
+a:visited {
+    color:black;
+}
+
+.nav-link:visited {
+    color: black;
+}
+
+.details-fieldset {
+    display: flex;
+    flex-flow: column nowrap;
+    border: none;
+}
+
+.submit-button {
+    border-radius: 0.5em;
+    border: none;
+    width: 10em;
+    padding: 0.5em;
+    margin:0.5em;
+}
+
+.advance-button {
+    background: var(--orange);
+}
+
+.advance-button:hover {
+    background: var(--light-orange);
+}
+
+#clear-cart-button {
+    background-color: var(--lightest-gray);
+    border: 2px var(--light-gray) solid;
+}
+
+#clear-cart-button:hover {
+    background-color: var(--light-gray);
+}
+
+#cart-buttons-div {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#cart-buttons-div > form{
+    display: flex;
+    align-items: stretch;
+}
+
+.details-input {
+    border-radius: 0.5em;
+    height:1.5em;
+    padding: 0.5em;
+    border: 2px solid var(--dark-gray);
+}
+
+.content-div {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 h3, h2 {
@@ -42,12 +145,92 @@ h3, h2 {
 }
 
 h1 { 
-    color: white
+    color: var(--dark-blue);
 }
 
 #address-input {
     height: 4em
 }
+
+#products-table {
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0.5em;
+}
+
+th {
+    background-color: var(--light-gray);
+    color: var(--dark-blue);
+    text-align: left;
+    padding: 0.5em;
+}
+
+#products-table > tbody > tr:nth-of-type(even){
+    background-color: var(--lightest-gray);
+}
+
+#product-details-table > tr > td:first-child {
+    background-color: var(--light-gray);
+}
+
+#category-div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+#table-div {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5em;
+}
+
+#add-to-cart-form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#add-to-cart-div {
+    border-top: 2px var(--dark-gray) solid;
+}
+
+#quantity-fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border: none;
+}
+
+#quantityToBuy {
+    width: 3em;
+}
+
+.view-button {
+    border-radius: 0.5em;
+    border: 2px var(--dark-gray) solid;
+    background-color: var(--lightest-gray);
+}
+
+.view-button:hover {
+    background-color: var(--light-gray);
+}
+
+.category-button {
+    border-radius: 0.5em;
+    border: 2px var(--dark-gray) solid;
+    background-color: var(--lightest-gray);
+}
+
+.category-button:hover {
+    background-color: var(--light-gray);
+}
+
 
 .select-cat {
     width: 5em;

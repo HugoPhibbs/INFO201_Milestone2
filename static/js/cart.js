@@ -17,7 +17,7 @@ const app = Vue.createApp({
     computed: Vuex.mapState({
         product: 'selectedProduct',
         items: 'items',
-        customer: 'customer'
+        customer: 'currentCustomer'
     }),
 
     mounted() {
@@ -51,6 +51,11 @@ const app = Vue.createApp({
                 total += this.getItemTotal(item);
             }
             return total;
+        },
+
+        clearCart() {
+            sessionStore.commit("clearCart");
+            window.location = "cart.html"
         }
     },
 

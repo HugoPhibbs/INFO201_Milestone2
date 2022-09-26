@@ -1,44 +1,57 @@
 import {SaleItem} from './classes.js'
-import { NumberFormatter } from './number-formatter.js';
+import {NumberFormatter} from './number-formatter.js';
+// Importing data store
+import {sessionStore} from './session-store.js'
+// import the navigation menu
+import {navigationMenu} from './navigation-menu.js';
 
 const app = Vue.createApp({
 
     data() {
         return {
-            // models map (comma separated key/value pairs)
-            // TODO Add selected Product
-            quantityToBuy: new Object()
+            quantityToBuy: undefined,
+            quantityAvailable: undefined
         };
     },
-    
+
     computed: Vuex.mapState({
-        product: 'selectedProduct'
+        product: 'selectedProduct',
+        items: 'items'
     }),
 
     mounted() {
+        this.setQuantityAvailable();
     },
 
     methods: {
         // comma separated function declarations
-        
+
+        setQuantityAvailable() {
+            let quantity = this.product.quantityInStock;
+            for (let item of this.items) {
+                if (item.product.productId === this.product.productId) {
+                    quantity -= item.quantityPurchased
+                }
+            }
+            this.quantityAvailable = quantity
+
+        },
+
         addToCart() {
-           sessionStore.commit("addItem", new SaleItem(this.product, this.quantityToBuy));
-        }
+            sessionStore.commit("addItem", new SaleItem(this.product, this.quantityToBuy));
+            this.quantityAvailable -= this.quantityToBuy;
+            this.$refs.quantityToBuy.reset();
+        },
+
     },
 
     // other modules
-    mixins:[NumberFormatter]
+    mixins: [NumberFormatter]
 
 });
 
 // other component imports go here
-
-// Importing data store
-import {sessionStore} from './session-store.js'
 app.use(sessionStore);
-
-// import the navigation menu
-import { navigationMenu } from './navigation-menu.js';
 
 // register the navigation menu under the <navmenu> tag
 app.component('navmenu', navigationMenu);

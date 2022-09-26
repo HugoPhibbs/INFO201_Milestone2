@@ -3,7 +3,7 @@ export const sessionStore = Vuex.createStore({
     state () {
         selectedProduct: null;
         items: null;
-        customer: null;
+        currentCustomer: null;
     },
 
     mutations: {
@@ -13,7 +13,7 @@ export const sessionStore = Vuex.createStore({
         }, 
         
         signIn(state, customer) {
-            state.customer = customer;
+            state.currentCustomer = customer;
             state.items = new Array();
         }, 
         
