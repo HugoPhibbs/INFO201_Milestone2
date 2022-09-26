@@ -2,11 +2,18 @@
     title Filtering products by a category
     skinparam style strictuml
 
+
     actor Customer as cust
+    box "Web Broswer" #white
     participant "view-products.html" as vp_html <<HTML Page>>
     participant "view-products.js" as vp_js <<Vue Controller>>
+    participant "axios" as ax <<HTTP Middleware>>
+    end box
+    box "Web Server" #white
+    participant "Server" as sr <<Jooby Server>>
     participant "ProductModule" as PM <<Jooby Module>>
     participant "ProductJdbiDAO" as dao <<DAO>>
+    end box
     database Database as db
 
 
@@ -16,10 +23,16 @@
     vp_html -> vp_js: filterProducts(category)
     activate vp_js
 
-    vp_js -> PM: GET api/categories/category
+    vp_js -> ax: get("/api/categories/category")
+    activate ax
+
+    ax -> sr: HTTP GET /api/categories/category
+    activate sr
+
+    sr -> PM: get("/api/categories/category")
     activate PM
 
-    PM -> dao: flterByCategory(category)
+    PM -> dao: filterByCategory(category)
     activate dao
     
     dao -> db: SELECT * FROM PRODUCT WHERE CATEGORY = :category
@@ -31,8 +44,14 @@
     dao --> PM: filtered products
     deactivate dao
 
-    PM --> vp_js: products 
+    PM --> sr: products
     deactivate PM
+
+    sr --> ax: Products JSON
+    deactivate sr
+
+    ax --> vp_js: JavaScript products
+    deactivate ax
 
     vp_js -> vp_js: Update products stored
 
