@@ -31,32 +31,32 @@
 
 			<fieldset class="details-fieldset">
 				<label for="username-input">Username:</label>
-				<input class="details-input" id="username-input" required v-model="customer.username">
+				<input type ="text" class="details-input" id="username-input" required v-model="customer.username">
 			</fieldset>
 
 			<fieldset class="details-fieldset">
 				<label for="firstname-input">First name:</label>
-				<input class="details-input" id="firstname-input" v-model="customer.firstName">
+				<input required type ="text" class="details-input" id="firstname-input" v-model="customer.firstName">
 			</fieldset>
 
 			<fieldset class="details-fieldset">
 				<label for="lastname-input">Last name:</label>
-				<input class="details-input" id="lastname-input" v-model="customer.surname">
+				<input required type ="text" class="details-input" id="lastname-input" v-model="customer.surname">
 			</fieldset>
 
 			<fieldset class="details-fieldset">
 				<label for="email-input">Email:</label>
-				<input class="details-input" id="email-input" v-model="customer.email">
+				<input required type ="email" class="details-input" id="email-input" v-model="customer.email">
 			</fieldset>
 
 			<fieldset class="details-fieldset">
 				<label for="address-input">Address:</label>
-				<input class="details-input" id="address-input" v-model="customer.addresss">
+				<input required type ="text" class="details-input" id="address-input" v-model="customer.addresss">
 			</fieldset>
 
 			<fieldset class="details-fieldset">
 				<label for="password-input">Password:</label>
-				<input class="details-input" id="password-input" required v-model="customer.password">
+				<input type ="text" class="details-input" id="password-input" required v-model="customer.password">
 			</fieldset>
 
 			<button class="submit-button advance-button" type=submit>Create account!</button>
